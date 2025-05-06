@@ -1,8 +1,8 @@
+const express = require('express');
 const fetch = require('node-fetch');
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const cors = require('cors');
-const express = require('express');
 
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -21,6 +21,11 @@ cloudinary.config({
 // Luma AI API configuration
 const lumaApiKey = process.env.LUMA_API_KEY;
 const lumaApiUrl = 'https://api.lumalabs.ai/dream-machine/v1/generations';
+
+// Health check route
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Luma AI Proxy is running' });
+});
 
 // Upload image to Cloudinary
 app.post('/upload', upload.single('image'), async (req, res) => {
