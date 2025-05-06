@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/luma/:path*",
+            "destination": "/api/luma"
+        }
+    ]
+}
